@@ -15,9 +15,12 @@ jobs:
         env:
           GSHEET_CLIENT_EMAIL: ${{ secrets.CLIENT_EMAIL }}
           GSHEET_PRIVATE_KEY: ${{ secrets.API_KEY }}
-      - name: dump results
-        env:
-          RESULTS: ${{ steps.update_worksheet.outputs.results }}
-        run: echo "$RESULTS" | jq
-      - name: Log results
-        run: echo "${{ steps.update_worksheet.outputs.results }}" >> results.log
+      - name: Save results as JSON
+        id: save_results
+        run: |
+          echo "${{ steps.update_worksheet.outputs.results }}" > results.json
+      - name: Upload results as artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: results
+          path: results.json
