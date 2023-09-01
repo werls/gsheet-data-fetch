@@ -1,34 +1,37 @@
 // 
+require('dotenv').config();
 const { GoogleSpreadsheet } = require('google-spreadsheet');
 const doc = new GoogleSpreadsheet(process.env.SHEET_ID);
+const fs = require('fs');
 
 /**
  * a function to get data from a Google Sheet
  * @returns {array} data
  */
 async function getData() {
+    console.log('Trying to access Google Sheet data...')
     try {
         await doc.useServiceAccountAuth({
             client_email: process.env.CLIENT_EMAIL,
             private_key: process.env.API_KEY.replace(/\\n/g, '\n'),
         });
         await doc.loadInfo();
-        console.log('--- Google Sheet data accessed ---')
+        console.log('Got access to Google Sheet data!')
     } catch (error) {
-        console.log('! Cant access Google Sheet data')
+        console.log('ERROR: Could not access Google Sheet data!')
         console.log(error)
         return
     }
 
-    console.log('--- Getting data from Google Sheet ---')
+    console.log('Getting the sheet...')
     const sheet = doc.sheetsByIndex[0];
-    console.log('--- Got data from Google Sheet ---')
+    console.log('Got sheet!')
     // const sheet = doc.sheetsByTitle['Sheet1'];
-    console.log('--- Getting sheet data ---')
+    console.log('Getting sheet data...')
     const rows = await sheet.getRows();
-    console.log('--- Got sheet data ---')
+    console.log('Got sheet data!')
 
-    console.log('--- Processing data ---')
+    console.log('Processing data...')
     const data = rows.map(row => {
         const obj = {};
         sheet.headerValues.forEach(header => {
@@ -37,10 +40,13 @@ async function getData() {
         });
         return obj;
     });
-    console.log('--- Data processed ---')
+    console.log('Data processed!')
 
-    console.log(data)
-
+    console.log('Writing data to file...')
+    fs.writeFileSync('gs-data.json', JSON.stringify(data));
+    console.log('Data written to file!')
+    
     return data
-    // fs.writeFileSync('gs-data.json', JSON.stringify(data));
 }
+
+getData()

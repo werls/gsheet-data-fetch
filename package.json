@@ -4,12 +4,14 @@
   "description": "Test of data fetching using Google Sheet and Github Actions",
   "main": "get-data.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "node get-data.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "fs": "^0.0.1-security"
+    "dotenv": "^16.3.1",
+    "fs": "^0.0.1-security",
+    "google-spreadsheet": "^3.3.0"
   }
 }
