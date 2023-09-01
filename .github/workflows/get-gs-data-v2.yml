@@ -17,6 +17,9 @@ jobs:
         with:
           node-version: '14'
 
+      - name: Install google-spreadsheet package
+        run: npm install google-spreadsheet@3.3.0
+
       - name: Run Node.js script
         env:
           CLIENT_ID: ${{ secrets.CLIENT_ID }}
