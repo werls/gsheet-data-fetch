@@ -43,7 +43,7 @@ async function getData(filename = 'gs-data.json') {
     console.log('Data processed!')
 
     // console.log('Writing data to file...')
-    fs.writeFileSync(filename, JSON.stringify(data));
+    // fs.writeFileSync(filename, JSON.stringify(data));
     // console.log('Data written to file!')
     
     return JSON.stringify(data)
