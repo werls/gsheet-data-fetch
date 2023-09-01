@@ -1,7 +1,7 @@
 console.log(process.env.SHEET_ID)
-if (process.env.SHEET_ID) {
-    console.log('Sheet id found')
-}
+console.log(process.env.API_KEY)
+console.log(process.env.CLIENT_EMAIL)
+console.log(process.env.XXXX)
 
 // const { GoogleSpreadsheet } = require('google-spreadsheet');
 // const doc = new GoogleSpreadsheet(process.env.SHEET_ID);
