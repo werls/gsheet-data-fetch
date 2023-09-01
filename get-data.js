@@ -8,7 +8,7 @@ const fs = require('fs');
  * a function to get data from a Google Sheet
  * @returns {array} data
  */
-async function getData() {
+async function getData(filename = 'gs-data.json') {
     console.log('Trying to access Google Sheet data...')
     try {
         await doc.useServiceAccountAuth({
@@ -43,7 +43,7 @@ async function getData() {
     console.log('Data processed!')
 
     // console.log('Writing data to file...')
-    // fs.writeFileSync('gs-data.json', JSON.stringify(data));
+    fs.writeFileSync(filename, JSON.stringify(data));
     // console.log('Data written to file!')
     
     return JSON.stringify(data)
