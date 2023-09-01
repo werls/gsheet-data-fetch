@@ -21,8 +21,24 @@ jobs:
         run: npm install google-spreadsheet@3.3.0
 
       - name: Run Node.js script
+        id: get-data
         env:
           CLIENT_EMAIL: ${{ secrets.CLIENT_EMAIL }}
           API_KEY: ${{ secrets.API_KEY }}
           SHEET_ID: ${{ secrets.SHEET_ID }}
         run: node get-data.js $CLIENT_EMAIL $API_KEY $SHEET_ID
+
+      - name: Save resultant file to repository
+        uses: actions/upload-artifact@v2
+        with:
+          name: gs-data
+          path: gs-data.json
+
+      - name: Commit resultant file to repository
+        uses: EndBug/add-and-commit@v7
+        with:
+          author_name: GitHub Actions
+          author_email: actions@github
+          message: 'Update gs-data.json'
+          add: 'gs-data.json'
+          force: true

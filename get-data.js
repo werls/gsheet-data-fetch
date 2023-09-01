@@ -43,10 +43,6 @@ async function getData() {
         return obj;
     });
     console.log('--- Data processed ---')
-		console.log(data)
 
-    return data
+    fs.writeFileSync('gs-data.json', JSON.stringify(results));
 }
-
-const results = getData()
-fs.writeFileSync('results.json', JSON.stringify(results));
