@@ -1,21 +1,21 @@
-name: gsheet.action test
-on: push
-jobs:
-  fetch:
-    runs-on: ubuntu-latest
-    steps:
-      - id: 'get_sheet_data'
-        uses: jroehl/gsheet.action@v2.1.0
-        with:
-          spreadsheetId: ${{ secrets.SHEET_ID }}
-          commands: |
-            [
-              { "command": "getData", "args": { "range": "'Sheet1'!A:C" } }
-            ]
-        env:
-          GSHEET_CLIENT_EMAIL: ${{ secrets.CLIENT_EMAIL }}
-          GSHEET_PRIVATE_KEY: ${{ secrets.API_KEY }}
-      - name: Save results as JSON
-        id: save_results
-        run: |
-          echo "${{ steps.get_sheet_data.outputs.results }}"
+# name: gsheet.action test
+# on: push
+# jobs:
+#   fetch:
+#     runs-on: ubuntu-latest
+#     steps:
+#       - id: 'get_sheet_data'
+#         uses: jroehl/gsheet.action@v2.1.0
+#         with:
+#           spreadsheetId: ${{ secrets.SHEET_ID }}
+#           commands: |
+#             [
+#               { "command": "getData", "args": { "range": "'Sheet1'!A:C" } }
+#             ]
+#         env:
+#           GSHEET_CLIENT_EMAIL: ${{ secrets.CLIENT_EMAIL }}
+#           GSHEET_PRIVATE_KEY: ${{ secrets.API_KEY }}
+#       - name: Save results as JSON
+#         id: save_results
+#         run: |
+#           echo "${{ steps.get_sheet_data.outputs.results }}"
