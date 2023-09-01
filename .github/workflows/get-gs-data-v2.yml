@@ -3,25 +3,20 @@ on:
   push:
     branches:
       - main
-
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-
       - name: Setup Node.js
         uses: actions/setup-node@v2
         with:
           node-version: '16'
-
       - name: Install google-spreadsheet package
         run: npm install google-spreadsheet@3.3.0
-
       - name: Run Node.js script
         id: get-data
         env:
@@ -30,13 +25,6 @@ jobs:
           SHEET_ID: ${{ secrets.SHEET_ID }}
         run: |
           node get-data.js $CLIENT_EMAIL $API_KEY $SHEET_ID > data.json
-
-      # - name: Save resultant file to repository
-      #   uses: actions/upload-artifact@v2
-      #   with:
-      #     name: gs-data
-      #     path: gs-data.json
-
       - name: Commit resultant file to repository
         uses: EndBug/add-and-commit@v7
         with:
@@ -44,13 +32,3 @@ jobs:
           message: 'Update data.json'
           committer_name: GitHub Actions
           committer_email: actions@github.com
-      # - name: Push changes to repository
-      #   env:
-      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      #   run: |
-      #     echo "$GITHUB_TOKEN"
-      #     git config --global user.email "actions@github.com"
-      #     git config --global user.name "GitHub Actions"
-      #     git add gs-data.json
-      #     git commit -m "Update data"
-      #     git push origin main
