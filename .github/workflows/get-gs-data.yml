@@ -10,7 +10,7 @@ jobs:
           spreadsheetId: ${{ secrets.SHEET_ID }}
           commands: |
             [
-              { "command": "getData", "args": { "range": "'Sheet1'!A:A" } }
+              { "command": "getData", "args": { "range": "'Sheet1'!A:C" } }
             ]
         env:
           GSHEET_CLIENT_EMAIL: ${{ secrets.CLIENT_EMAIL }}
@@ -18,7 +18,7 @@ jobs:
       - name: Save results as JSON
         id: save_results
         run: |
-          echo "${{ steps.update_worksheet.outputs.results }}" > results.json
+          echo "${{ steps.update_worksheet.outputs.results }}" | jq . > results.json
       - name: Upload results as artifact
         uses: actions/upload-artifact@v2
         with:
