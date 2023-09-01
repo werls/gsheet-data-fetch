@@ -49,4 +49,4 @@ async function getData() {
 }
 
 const results = getData()
-fs.writeFileSync('results.json', JSON.stringify(results);
+fs.writeFileSync('results.json', JSON.stringify(results));
