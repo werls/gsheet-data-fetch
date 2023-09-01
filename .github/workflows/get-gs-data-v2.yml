@@ -29,7 +29,8 @@ jobs:
           API_KEY: ${{ secrets.API_KEY }}
           SHEET_ID: ${{ secrets.SHEET_ID }}
         run: |
-          node get-data.js $CLIENT_EMAIL $API_KEY $SHEET_ID | tee gs-data.json
+          result=$(node get-data.js $CLIENT_EMAIL $API_KEY $SHEET_ID)
+          echo "$result" > gs-data.json
 
       # - name: Save resultant file to repository
       #   uses: actions/upload-artifact@v2
