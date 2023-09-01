@@ -10,7 +10,7 @@ jobs:
           spreadsheetId: ${{ secrets.SHEET_ID }}
           commands: |
             [
-              { "command": "getData", "args": { "range": "'Sheet1'!A:AH" } }
+              { "command": "getData", "args": { "range": "'Sheet1'!A:A" } }
             ]
         env:
           GSHEET_CLIENT_EMAIL: ${{ secrets.CLIENT_EMAIL }}
