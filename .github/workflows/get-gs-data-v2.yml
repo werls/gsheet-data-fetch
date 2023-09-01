@@ -26,13 +26,15 @@ jobs:
           CLIENT_EMAIL: ${{ secrets.CLIENT_EMAIL }}
           API_KEY: ${{ secrets.API_KEY }}
           SHEET_ID: ${{ secrets.SHEET_ID }}
-        run: node get-data.js $CLIENT_EMAIL $API_KEY $SHEET_ID
+        run: |
+          RESULTS=$(node get-data.js $CLIENT_EMAIL $API_KEY $SHEET_ID)
+          echo "$RESULT_FILE" > gs-data.json
 
       - name: Save resultant file to repository
         uses: actions/upload-artifact@v2
         with:
           name: gs-data
-          path: gs-data.json
+          path: $RESULTS
 
       - name: Commit resultant file to repository
         uses: EndBug/add-and-commit@v7
