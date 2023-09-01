@@ -12,7 +12,7 @@ async function getData() {
             client_email: process.env.CLIENT_EMAIL,
             private_key: process.env.API_KEY.replace(/\\n/g, '\n'),
         });
-        await doc.loadInfo(); 
+        await doc.loadInfo();
         console.log('--- Google Sheet data accessed ---')
     } catch (error) {
         console.log('! Cant access Google Sheet data')
@@ -39,6 +39,8 @@ async function getData() {
     });
     console.log('--- Data processed ---')
 
-		return data
+    console.log(data)
+
+    return data
     // fs.writeFileSync('gs-data.json', JSON.stringify(data));
 }
