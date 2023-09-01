@@ -44,5 +44,5 @@ async function getData() {
     });
     console.log('--- Data processed ---')
 
-    fs.writeFileSync('gs-data.json', JSON.stringify(results));
+    fs.writeFileSync('gs-data.json', JSON.stringify(data));
 }
