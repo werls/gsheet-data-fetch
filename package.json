@@ -1,0 +1,12 @@
+{
+  "name": "gsheet-data-fetch",
+  "version": "1.0.0",
+  "description": "Test of data fetching using Google Sheet and Github Actions",
+  "main": "get-data.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
