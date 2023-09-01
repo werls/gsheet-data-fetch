@@ -1,44 +1,49 @@
-const { GoogleSpreadsheet } = require('google-spreadsheet');
-const doc = new GoogleSpreadsheet(process.env.SHEET_ID);
-
-/**
- * a function to get data from a Google Sheet
- * @returns {array} data
- */
-async function getData() {
-    try {
-        await doc.useServiceAccountAuth({
-            client_email: process.env.CLIENT_EMAIL,
-            private_key: process.env.API_KEY.replace(/\\n/g, '\n'),
-        });
-        await doc.loadInfo(); 
-        console.log('--- Google Sheet data accessed ---')
-    } catch (error) {
-        console.log('! Cant access Google Sheet data')
-        console.log(error)
-        return
-    }
-
-    console.log('--- Getting data from Google Sheet ---')
-    const sheet = doc.sheetsByIndex[0];
-    console.log('--- Got data from Google Sheet ---')
-    // const sheet = doc.sheetsByTitle['Sheet1'];
-    console.log('--- Getting sheet data ---')
-    const rows = await sheet.getRows();
-    console.log('--- Got sheet data ---')
-
-    console.log('--- Processing data ---')
-    const data = rows.map(row => {
-        const obj = {};
-        sheet.headerValues.forEach(header => {
-            const value = row[header];
-            obj[header] = value !== null ? value : NaN;
-        });
-        return obj;
-    });
-    console.log('--- Data processed ---')
-
-    return data
+console.log(process.env.SHEET_ID)
+if (process.env.SHEET_ID) {
+    console.log('Sheet id found')
 }
 
-console.log(getData())
+// const { GoogleSpreadsheet } = require('google-spreadsheet');
+// const doc = new GoogleSpreadsheet(process.env.SHEET_ID);
+
+// /**
+//  * a function to get data from a Google Sheet
+//  * @returns {array} data
+//  */
+// async function getData() {
+//     try {
+//         await doc.useServiceAccountAuth({
+//             client_email: process.env.CLIENT_EMAIL,
+//             private_key: process.env.API_KEY.replace(/\\n/g, '\n'),
+//         });
+//         await doc.loadInfo(); 
+//         console.log('--- Google Sheet data accessed ---')
+//     } catch (error) {
+//         console.log('! Cant access Google Sheet data')
+//         console.log(error)
+//         return
+//     }
+
+//     console.log('--- Getting data from Google Sheet ---')
+//     const sheet = doc.sheetsByIndex[0];
+//     console.log('--- Got data from Google Sheet ---')
+//     // const sheet = doc.sheetsByTitle['Sheet1'];
+//     console.log('--- Getting sheet data ---')
+//     const rows = await sheet.getRows();
+//     console.log('--- Got sheet data ---')
+
+//     console.log('--- Processing data ---')
+//     const data = rows.map(row => {
+//         const obj = {};
+//         sheet.headerValues.forEach(header => {
+//             const value = row[header];
+//             obj[header] = value !== null ? value : NaN;
+//         });
+//         return obj;
+//     });
+//     console.log('--- Data processed ---')
+
+//     return data
+// }
+
+// console.log(getData())
