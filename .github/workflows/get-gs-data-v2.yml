@@ -37,13 +37,13 @@ jobs:
           name: gs-data
           path: gs-data.json
 
-      # - name: Commit resultant file to repository
-      #   uses: EndBug/add-and-commit@v7
-      #   with:
-      #     add: 'gs-data.json'
-      #     message: 'Update gs-data.json'
-      #     committer_name: GitHub Actions
-      #     committer_email: actions@github.com
+      - name: Commit resultant file to repository
+        uses: EndBug/add-and-commit@v7
+        with:
+          add: 'gs-data.json'
+          message: 'Update gs-data.json'
+          committer_name: GitHub Actions
+          committer_email: actions@github.com
       # - name: Push changes to repository
       #   env:
       #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
