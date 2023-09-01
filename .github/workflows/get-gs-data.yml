@@ -1,26 +1,23 @@
-name: Fetch Google Sheet Data
-on:
-  push:
-    branches:
-      - main
-
+name: gsheet.action test
+on: push
 jobs:
   fetch:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
-      - id: googlesheet_actions
-        uses: rjoydip/googlesheet-actions@0.1.1
+      - id: 'update_worksheet'
+        uses: jroehl/gsheet.action@v2.1.0
         with:
-          sheet-id: ${{ secrets.SHEET_ID }}
-      - name: Save data to JSON file
-        run: |
-          echo '${{ steps.googlesheet_actions.outputs.result }}' > data.json
-      - name: Commit and push if it changed
-        run: |
-          git config --global user.email "actions@github.com"
-          git config --global user.name "GitHub Action"
-          git add -A
-          git diff --quiet && git diff --staged --quiet || git commit -m "Update data"
-          git push
+          spreadsheetId: ${{ secrets.SHEET_ID }}
+          commands: |
+            [
+              { "command": "getData", "args": { "range": "'<worksheetTitle>'!A2:B3" } }
+            ]
+        env:
+          GSHEET_CLIENT_EMAIL: ${{ secrets.CLIENT_EMAIL }}
+          GSHEET_PRIVATE_KEY: ${{ secrets.API_KEY }}
+      - name: dump results
+        env:
+          RESULTS: ${{ steps.update_worksheet.outputs.results }}
+        run: echo "$RESULTS" | jq
+      - name: Log results
+        run: echo "${{ steps.update_worksheet.outputs.results }}" >> results.log
