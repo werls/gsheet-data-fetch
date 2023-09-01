@@ -18,4 +18,8 @@ jobs:
           node-version: '14'
 
       - name: Run Node.js script
-        run: node get-data.js
+        env:
+          CLIENT_ID: ${{ secrets.CLIENT_ID }}
+          API_KEY: ${{ secrets.API_KEY }}
+          SHEET_ID: ${{ secrets.SHEET_ID }}
+        run: node get-data.js $CLIENT_ID $API_KEY $SHEET_ID
