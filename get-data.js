@@ -42,8 +42,9 @@ async function getData() {
         return obj;
     });
     console.log('--- Data processed ---')
+		console.log(data)
 
     return data
 }
 
-console.log(getData())
+getData()
