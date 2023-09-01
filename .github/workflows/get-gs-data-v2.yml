@@ -25,4 +25,4 @@ jobs:
           CLIENT_ID: ${{ secrets.CLIENT_EMAIL }}
           API_KEY: ${{ secrets.API_KEY }}
           SHEET_ID: ${{ secrets.SHEET_ID }}
-        run: node get-data.js $CLIENT_ID $API_KEY $SHEET_ID
+        run: node get-data.js $CLIENT_EMAIL $API_KEY $SHEET_ID
