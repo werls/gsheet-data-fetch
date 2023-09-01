@@ -4,7 +4,7 @@ jobs:
   fetch:
     runs-on: ubuntu-latest
     steps:
-      - id: 'update_worksheet'
+      - id: 'get_sheet_data'
         uses: jroehl/gsheet.action@v2.1.0
         with:
           spreadsheetId: ${{ secrets.SHEET_ID }}
@@ -18,9 +18,4 @@ jobs:
       - name: Save results as JSON
         id: save_results
         run: |
-          echo "${{ steps.update_worksheet.outputs.results }}" | jq . > results.json
-      - name: Upload results as artifact
-        uses: actions/upload-artifact@v2
-        with:
-          name: results
-          path: results.json
+          echo "${{ steps.get_sheet_data.outputs.results }}"
