@@ -39,8 +39,7 @@ jobs:
       - name: Commit resultant file to repository
         uses: EndBug/add-and-commit@v7
         with:
-          author_name: GitHub Actions
-          author_email: actions@github
-          message: 'Update gs-data.json'
           add: 'gs-data.json'
-          force: true
+          message: 'Update gs-data.json'
+          committer_name: GitHub Actions
+          committer_email: actions@github.com
