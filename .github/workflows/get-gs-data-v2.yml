@@ -38,20 +38,20 @@ jobs:
           name: gs-data
           path: gs-data.json
 
-      # - name: Commit resultant file to repository
-      #   uses: EndBug/add-and-commit@v7
-      #   with:
-      #     add: 'gs-data.json'
-      #     message: 'Update gs-data.json'
-      #     committer_name: GitHub Actions
-      #     committer_email: actions@github.com
-      - name: Push changes to repository
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          echo "$GITHUB_TOKEN"
-          git config --global user.email "actions@github.com"
-          git config --global user.name "GitHub Actions"
-          git add gs-data.json
-          git commit -m "Update data"
-          git push origin main
+      - name: Commit resultant file to repository
+        uses: EndBug/add-and-commit@v7
+        with:
+          add: 'gs-data.json'
+          message: 'Update gs-data.json'
+          committer_name: GitHub Actions
+          committer_email: actions@github.com
+      # - name: Push changes to repository
+      #   env:
+      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      #   run: |
+      #     echo "$GITHUB_TOKEN"
+      #     git config --global user.email "actions@github.com"
+      #     git config --global user.name "GitHub Actions"
+      #     git add gs-data.json
+      #     git commit -m "Update data"
+      #     git push origin main
