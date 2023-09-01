@@ -36,7 +36,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: gs-data
-          path: $RESULT_FILE
+          path: gs-data.json
 
       # - name: Commit resultant file to repository
       #   uses: EndBug/add-and-commit@v7
