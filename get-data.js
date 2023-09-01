@@ -1,10 +1,4 @@
-// console.log(process.env.CLIENT_EMAIL)
-// console.log(process.env.API_KEY)
-// console.log(process.env.SHEET_ID)
-// console.log(process.env.XXXX)
-
 const { GoogleSpreadsheet } = require('google-spreadsheet');
-const fs = require('fs');
 const doc = new GoogleSpreadsheet(process.env.SHEET_ID);
 
 /**

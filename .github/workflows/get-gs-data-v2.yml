@@ -17,7 +17,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v2
         with:
-          node-version: '14'
+          node-version: '16'
 
       - name: Install google-spreadsheet package
         run: npm install google-spreadsheet@3.3.0
@@ -30,7 +30,7 @@ jobs:
           SHEET_ID: ${{ secrets.SHEET_ID }}
         run: |
           RESULTS=$(node get-data.js $CLIENT_EMAIL $API_KEY $SHEET_ID)
-          echo "$RESULT_FILE" > gs-data.json
+          echo "$RESULTS" > gs-data.json
 
       - name: Save resultant file to repository
         uses: actions/upload-artifact@v2
