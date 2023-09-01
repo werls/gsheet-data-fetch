@@ -42,11 +42,11 @@ async function getData() {
     });
     console.log('Data processed!')
 
-    console.log('Writing data to file...')
-    fs.writeFileSync('gs-data.json', JSON.stringify(data));
-    console.log('Data written to file!')
+    // console.log('Writing data to file...')
+    // fs.writeFileSync('gs-data.json', JSON.stringify(data));
+    // console.log('Data written to file!')
     
-    return data
+    return JSON.stringify(data)
 }
 
 getData()

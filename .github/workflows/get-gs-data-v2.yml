@@ -31,11 +31,11 @@ jobs:
         run: |
           node get-data.js $CLIENT_EMAIL $API_KEY $SHEET_ID
 
-      - name: Save resultant file to repository
-        uses: actions/upload-artifact@v2
-        with:
-          name: gs-data
-          path: gs-data.json
+      # - name: Save resultant file to repository
+      #   uses: actions/upload-artifact@v2
+      #   with:
+      #     name: gs-data
+      #     path: gs-data.json
 
       - name: Commit resultant file to repository
         uses: EndBug/add-and-commit@v7
