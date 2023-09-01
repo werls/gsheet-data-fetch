@@ -4,6 +4,7 @@
 // console.log(process.env.XXXX)
 
 const { GoogleSpreadsheet } = require('google-spreadsheet');
+const fs = require('fs');
 const doc = new GoogleSpreadsheet(process.env.SHEET_ID);
 
 /**
@@ -47,4 +48,5 @@ async function getData() {
     return data
 }
 
-getData()
+const results = getData()
+fs.writeFileSync('results.json', JSON.stringify(results);
